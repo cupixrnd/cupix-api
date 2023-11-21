@@ -91,9 +91,9 @@ print(r.json())
 # Download the video
 
 
-> Code samples
-
 `GET /videos/{id}/download`
+
+> Code samples
 
 ```python
 import requests
