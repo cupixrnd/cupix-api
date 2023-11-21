@@ -19,14 +19,14 @@ In the near future, we plan to provide a web service where APIs like other appli
 
 - Create the capture
 1. [Upload video](<Upload video.md>)
-2. [Upload video with metadata](Upload video with metadata.md)
-3. [Upload videos with panorama image](Upload videos with panorama image.md)
+2. [Upload video with metadata](<Upload video with metadata.md>)
+3. [Upload videos with panorama image](<Upload videos with panorama image.md>)
 
 - Result of calculation
-1. [Panorama image](Panorama image.md)
-2. [Siteview panos](Siteview panos.md)
+1. [Panorama image](<Panorama image.md>)
+2. [Siteview panos](<Siteview panos.md>)
 
 - Cupix resources
-1. [Pointcloud](Pointcloud.md)
-2. [Mesh](Mesh.md)
-3. [Video](Video.md)
+1. [Pointcloud](<Pointcloud.md>)
+2. [Mesh](<Mesh.md>)
+3. [Video](<Video.md>)
