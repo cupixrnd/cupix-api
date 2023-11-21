@@ -1,185 +1,147 @@
-# Upload video without Capture App
+# Upload video with metadata
 
-This document explains how to do web-upload without capture data which is *waiting panos state* uploaded by the capture app.
-In the case of web-upload, start point and scale after processing may be different because the start and end points of capture are unknown. Please note this.
+This document covers how to upload videos which synced capture with the capture app.
 
 The overall flow is as follows.
 
-1. [Get authentication token with email and password.](https://github.com/RondoOp5/cupix-api-playground/blob/main/cupix-api/authenticate.md)
-2. [Finding the key of the project you want to upload. Let's call this facility_key.](https://github.com/RondoOp5/cupix-api-playground/blob/main/cupix-api/facility.md)
-3. [Finding the id of the level you want to upload. Let's call this level_id.](https://github.com/RondoOp5/cupix-api-playground/blob/main/cupix-api/level.md)
-4. [Create an empty record. Let's call this record_id.](#create-an-empty-record)
-5. [Create an empty capture with record_id and level_id.](#create-an-empty-capture)
-6. [Create an empty video model with capture_id and get upload_url](#create-an-empty-video-model-with-capture_id-and-get-upload_url)
-7. [Upload your video files to the upload url or upload using the aws sdk.](#upload-video-to-upload-url)
-8. [Check whether the upload of the video file is successful.](#check-success-of-upload)
-9. [Modify a state of the area which upload is complete.](#make-area-upload-done-state)
+If the size of one video file you want to upload is less than 5 GB
 
+1. [Get all ids and upload urls of videos that are in synced state.](#get-all-video-ids-and-upload_urls)
+2. [Upload a video file to the upload url.](#upload-video-to-upload-url)
+3. [Check whether the upload of the video file is successful.](#check-success-of-upload)
+4. [Modify a state of the area which upload is complete.](#make-area-upload-done-state)
 
+If the size of one video file you want to upload is larger than 5 GB
 
+1. [Get all ids of videos that are in synced state.](#get-all-video-ids-and-upload_urls)
+2. [Get upload credential information required to upload each video by aws s3 sdk.](#get-upload-credential)
+3. [Upload a video file by importing aws s3 sdk based on the received information.](#import-aws-sdk-and-upload-video)
+4. [Check whether the upload of the video file is successful.](#check-success-of-upload)
+5. [Modify a state of the area which upload is complete.](#make-area-upload-done-state)
 
+Before start, you need an authentication key. You can see an [in this document](https://github.com/RondoOp5/cupix-api-playground/blob/main/cupix-api/authenticate.md) to get access_token for _x-cupix-auth_ key.
 
-## Create an empty record
-*Record* is the name that calls Capture of CupixWorks on the server. Conversely, the name that calls the area of Cupixworks is *capture*.
-From now on, we will call each Capture, area of CupixWorks as *record*, *capture*.
-Our first goal is to 1. create a capture, 2. upload video to that capture, and 3. trigger that capture to be calculated by notifying server that the upload is complete.
-The whole series of steps after this is for this.
+## Get all video ids and upload_urls
 
-`POST https://api.cupix.works/api/v1/records`
+First, to upload, you need to know the basic information required for upload and the video id on the server.
+The required calls are:
+
+`GET https://api.cupix.works/api/v1/videos/upload_candidates`
 
 | Attribute    | Type            | Required | Description                                                               |
-|:----------|:----------|:----------|:----------|
-| fields    | array of string   | true   | id,name,running_state,facility,workspace,user,team,meta,note,captured_at,created_at,updated_at,thumbnail_urls,permission,last_updated_user,editing_state   |
-| facility_key    | string   | true    | the key of the project you want to upload  |
-| captured_at  |string   | true    | ex) "2023-01-20T08:53:29.734Z"   |
-| note  | string   | false    | Comments to display on record   |
+| :----------- | :-------------- | :------- | :------------------------------------------------------------------------ |
+| fields       | array of string | true     | id,name,workspace,facility,record,level,capture,resource_state,upload_url |
+| workspace_id | integer         | false    | id to filter the video ids to upload by the workspace                     |
+| page         | integer         | false    | page index to search per page                                             |
+| per_page     | integer         | false    | Number of items to GET per page                                           |
+
+You can get the upload_url by calling upload_url on fields.
+But there is a important variable to keep in mind here. This is the id of the Area to which this video file belongs. The **id attribute of capture** of the response is the id of the Area. You should save this value and use it when the last upload is complete.
 
 ### Sample request
+
 ```js
-request.post(`https://api.cupix.works/api/v1/records`, {
-    method: 'POST',
+request.get(`https://api.cupix.works/api/v1/videos/upload_candidates`, {
+    method:'GET',
     Accept: 'application/json',
     json: true,
     qs : {
-        fields : 'id, captured_at',
-        facility_key : <your facility_key>,
-        note : 'test',
-        captured_at : new Date()
-    }, 
-    headers: {
-    'x-cupix-auth' : <your access_token>
-    }
-    })
-```
-
-### Sample response
-```js
-Status Code 200 : {
-  "result": {
-    "data": {
-      "id": "10200",
-      "type": "record",
-      "attributes": {
-        "id": 10200,
-        "captured_at": "2023-01-20T08:53:29.000Z"
-      }
-    }
-  },
-  "session": null
-}
-
-```
-
-**Set the id received as a response here as *record_id* and save it.**
-
-
-## Create an empty capture
-
-`POST https://api.cupix.works/api/v1/captures`
-
-| Attribute    | Type            | Required | Description                                                               |
-|:----------|:----------|:----------|:----------|
-| fields    | array of string   | true   | id,name,bucket,size,state,upload_state,running_state,error_code,processing_status,user,team,facility,workspace,thumbnail_urls,meta,created_at,updated_at,published_at,measure_ready_at,capture_type,level,record,permission,last_updated_user    |
-| creation_platform   | string   | true    | Which platform the capture was made on ex) 'web'    |
-| material   | string    | true    | What material to capture. either 'video' or 'pano'   |
-|level_id| string    | true    | The id of the level you want to capture    |
-|record_id   | string    | true    | The id of the record you want to capture    |
-| name    | string    | true    | The name you want to write in the capture   |
-
-### Sample request
-```js
-request.post(`https://api.cupix.works/api/v1/captures`, {
-    method: 'POST',
-    Accept: 'application/json',
-    json: true,
-    qs: {
-        fields: 'id, upload_url',
-        creation_platform: "web",
-        material: 'video',
-        level_id: <your level_id>,
-        record_id: <your record_id>,
-        name: 'test_create_area'
+            fields : 'id,name,workspace,facility,record,level,capture,resource_state,upload_url',
     },
     headers: {
-        'x-cupix-auth': <your access_token>
+    'x-cupix-auth' : <your_access_token>
     }
 })
 ```
 
-### Sample response
+### Example response
+
 ```js
-Status Code 200 : {
-  "result": {
-    "data": {
-      "id": "72493",
-      "type": "capture",
-      "attributes": {
-        "id": 72493,
-        "name": "test_create_area"
-      }
-    }
-  },
-  "session": null
-}
-
-```
-
-
-**Set the id received as a response here as *capture_id* and save it.**
-
-
-
-## Create an empty video model with capture_id and get upload_url
-
-`POST https://api.cupix.works/api/v1/videos`
-
-| Attribute    | Type            | Required | Description                                                               |
-|:----------|:----------|:----------|:----------|
-| fields    | array of string  | true  | **id,upload_url**,name,state,resource_state    |
-| name   |string    | true   | true   | Name of the video file (Please be sure to write the file name.)
-| capture_id   |string   | true    | your capture_id   |
-
-### Sample request
-```js
-request.post(`https://api.cupix.works/api/v1/videos`, {
-        method: 'POST',
-        Accept: 'application/json',
-        json: true,
-        qs : { 
-            fields: 'id,upload_url'
-            },
-        body : {
-            name: <your file_name ex) 'VID_20210503_095400_00_052'>,
-            capture_id: <your capture_id>
-        },
-        headers: {
-            'x-cupix-auth': access_token
-        }
-    })
-
-```
-
-
-### Sample response
-```js
-Status Code 200 : {
-  "result": {
-    "data": {
-      "id": "36788",
+{
+  "data": [
+    {
+      "id": "32919",
       "type": "video",
       "attributes": {
-        "id": 36788,
-        "upload_url": <your upload_url>
+        "id": 32919,
+        "name": "VID_20221104_145752_10_004.insv",
+        "workspace": {
+                   },
+          "updated_at": "2022-04-07T07:45:50.922Z",
+          "billing_state": "none",
+          "trial_state": "none",
+          "lock_state": "active",
+          "billing_info": {},
+          "applied_billing_state": "active",
+          "plan": null,
+          "state": "active",
+          "type": "Workspace"
+        },
+        "facility": {
+        },
+          "copy_state": "none",
+          "bim_pack": false,
+          "unit": {},
+          "siteinsights_version": 2,
+          "type": "Facility"
+        },
+        "record": {},
+        "level": {},
+        "capture": {
+			"id" : 199991
+		},
+        "state": "created",
+        "upload_url": ""
       }
-    }
-  },
-  "session": null
-}
+    },
+    {
+      "id": "32918",
+      "type": "video",
+      "attributes": {
+        "id": 32918,
+        "name": "VID_20221104_145752_00_004.insv",
+        "workspace": {
+          "id": 761,
+          "name": ",
+          "facility_size": 0,
+          "user": {},
+          "updated_at": "",
+          "billing_state": "none",
+          "trial_state": "none",
+          "lock_state": "active",
+          "billing_info": {},
+          "applied_billing_state": "active",
+          "plan": null,
+          "state": "active",
+          "type": "Workspace"
+        },
+        "facility": {
+          "id": 2764,
+          "name": "",
+          "key": "",
+          "bearing": 0,
+          "cycle_state": "created",
+          "address": "",
+          "use_georeference": true,
+          "location": { },
+          "copy_state": "none",
+          "bim_pack": false,
+          "unit": {},
+          "siteinsights_version": 2,
+          "type": "Facility"
+        },
+        "level": {},
+        "capture": {
+			"id" : 199991
+		},
+        "state": "created",
+        "upload_url": ""
+      }
+    },
+
+...
+]
 ```
-
-
-**Since there are two insv files, you may think that you need to call them twice. But you can upload two files together with one upload_url obtained by calling only once.**
-
 
 <br>
 
@@ -188,7 +150,6 @@ Status Code 200 : {
 Just upload the file to upload_url.
 Uploads can be executed with a PUT request in any language.
 The following is a sample code written in js.
-
 
 ### Sample request
 
@@ -215,11 +176,7 @@ const size = await fs.stat(filePath).then(({size}) => size);
 await streamUpload('insv', size, filePath, <Your_video_id>, <Your_upload_url>).then(console.log);
 ```
 
-
-**If the size of one video you want to upload exceeds 5GB, you must use the aws sdk. Here's a guide.**
-
-
-### Get upload credential
+## Get upload credential
 
 `POST https://api.cupix.works/api/v1/videos/{id}/upload_credentials`
 
@@ -270,7 +227,7 @@ request.post(`https://api.cupix.works/api/v1/videos/32918/upload_credentials`, {
 
 ```
 
-### import aws-sdk and upload video
+#### import aws-sdk and upload video
 
 Then, implement aws-sdk upload with the obtained information and upload it.(See [here](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html))
 

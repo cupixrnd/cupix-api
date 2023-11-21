@@ -1,4 +1,4 @@
-# Upload mixed capture
+# Upload capture with video and pano
 
 This document outlines mixed-capture uploads.
 

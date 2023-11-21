@@ -1,4 +1,4 @@
-# Invitations API
+# Invitation API
 
 Let's say you want to invite with user emails. When invitations are sent, users can create an account through the email they receive. However, the invited users may be granted to permission before creating an account. This document is explained that the series of processes of inviting users, putting them into groups, and granting permissions through the API.
 
