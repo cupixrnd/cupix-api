@@ -93,6 +93,8 @@ print(r.json())
 
 > Code samples
 
+`GET /videos/{id}/download`
+
 ```python
 import requests
 headers = {
@@ -105,8 +107,6 @@ r = requests.get('https://api.cupix.works/api/v1/videos/{id}/download', headers 
 https.get(r.url, {fileStream})
 
 ```
-
-`GET /videos/{id}/download`
 
 <h3 id="video-download-parameters">Parameters</h3>
 
