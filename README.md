@@ -31,3 +31,4 @@ In the near future, we plan to provide a web service where APIs like other appli
 1. [Pointcloud](<Pointcloud.md>)
 2. [Mesh](<Mesh.md>)
 3. [Video](<Video.md>)
+4. [PointcloudResource](<PointcloudResource.md>)
