@@ -8,6 +8,8 @@ As explained in the Pointcloud model, pointclouds whose kind is group do not hav
 Also, you can check the *mesh_uploaded_at* and *ply_uploaded_at* fields of the *[Pointcloud model](https://github.com/cupixrnd/cupix-api/blob/main/Pointcloud.md#parameters)* to check whether the mesh or ply of the cpc exists.
 
 <br>
+
+
 ## Get a pointcloud resources list
 
 `GET /pointclouds/{id}/resources`
