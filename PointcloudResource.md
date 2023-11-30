@@ -32,7 +32,7 @@ headers = {
 
 # ID of pointcloud whose kind property is sub
 r = requests.get('https://api.cupix.works/api/v1/pointclouds/{id}/resources', params={
-  'fields': 'id, name, kind, mesh_uploaded_at, ply_uploaded_at',
+  'fields': 'id, name, kind',
 }, headers = headers)
 
 
