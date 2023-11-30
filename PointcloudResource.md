@@ -111,7 +111,7 @@ print(r.json())
 
 ## Download the resource of the pointcloud
 
-`GET /pointclouds/{id}/resources/{kind}/download
+`GET /pointclouds/{id}/resources/{kind}/download`
 <a id="opIdpointcloud_download_pointcloud_resource"></a>
 
 > Code samples
