@@ -16,7 +16,7 @@ So I'll just explain 1,2,3.
 
 ## Create video-pano type capture
 
-`POST https://api.cupix.works/api/v1/captures`
+`POST https://{team_domain}.cupix.works/api/v1/captures`
 
 First, create capture as video-pano type.
 
@@ -34,7 +34,7 @@ Put video-pano in the material property.
 ### Sample request
 
 ```
-request.post(`https://api.cupix.works/api/v1/captures`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/captures`, {
     method: 'POST',
     Accept: 'application/json',
     json: true,
@@ -72,7 +72,7 @@ Status Code 200 : {
 
 ## Create a video model on the server
 
-`POST https://api.cupix.works/api/v1/videos`
+`POST https://{team_domain}.cupix.works/api/v1/videos`
 
 If capture was created with video-pano, put something called **pts_unit** when creating a video.
 
@@ -89,7 +89,7 @@ Currently only supported in milliseconds
 ### Sample request
 
 ```
-request.post(`https://api.cupix.works/api/v1/videos`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/videos`, {
         method: 'POST',
         Accept: 'application/json',
         json: true,
@@ -128,7 +128,7 @@ Status Code 200 : {
 
 ## Create a pano model on the server
 
-`POST https://api.cupix.works/api/v1/panos`
+`POST https://{team_domain}.cupix.works/api/v1/panos`
 
 We now need to tell which timestamp on the video the image to embed exists.
 
@@ -144,7 +144,7 @@ We now need to tell which timestamp on the video the image to embed exists.
 ### Sample request
 
 ```
-request.post(`https://api.cupix.works/api/v1/panos`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/panos`, {
         method: 'POST',
         Accept: 'application/json',
         json: true,

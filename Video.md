@@ -2,7 +2,7 @@
 
 This document covers uploaded video resources. First, video is a child model of the capture model. So you should know the capture_id to query a video list. You can find the id, name, and state of the video by inputting capture_id in queryString.
 
-Then you can download the original video files by inserting the video_id obtained this way into the download API.
+Then you can download the original video files by inserting the video_id obtained this way into the download {team_domain}.
 
 Let's say there is a pair of video with capture_id 132435 of the insta360 One X2 camera, and each video_id is 1324 and 1325. you can search for two video models through `GET /videos` and then call the download API `GET /videos/{id}/download`with their IDs.
 
@@ -20,7 +20,7 @@ headers = {
   'X-CUPIX-AUTH': <Your API Token>
 }
 
-r = requests.get('https://api.cupix.works/api/v1/videos', params={
+r = requests.get('https://{team_domain}.cupix.works/api/v1/videos', params={
   'fields': 'id, name, state',
   'capture_id' : 123456
 }, headers = headers)
@@ -102,7 +102,7 @@ headers = {
   'X-CUPIX-AUTH': <Your API Token>
 }
 
-r = requests.get('https://api.cupix.works/api/v1/videos/{id}/download', headers = headers)
+r = requests.get('https://{team_domain}.cupix.works/api/v1/videos/{id}/download', headers = headers)
 
 https.get(r.url, {fileStream})
 

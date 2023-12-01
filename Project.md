@@ -8,7 +8,7 @@ If you don't change the project you want to upload captures to, you don't need t
 
 ## Look up entire facilites in team
 
-`GET https://api.cupix.works/api/v1/facilities`
+`GET https://{team_domain}.cupix.works/api/v1/facilities`
 
 | Attribute    | Type           | Required | Description                                   |
 | :----------- | :------------- | :------- | :-------------------------------------------- |
@@ -20,7 +20,7 @@ If you don't change the project you want to upload captures to, you don't need t
 ### Sample request
 
 ```js
-request.get(`https://api.cupix.works/api/v1/facilities`, {
+request.get(`https://{team_domain}.cupix.works/api/v1/facilities`, {
     method:'GET',
     Accept: 'application/json',
     json: true,
@@ -80,7 +80,7 @@ Status Code 200 : {
 
 ## Get georeference information of a certain facility 
 
-`GET https://api.cupix.works/api/v1/facilities/{facility_key}`
+`GET https://{team_domain}.cupix.works/api/v1/facilities/{facility_key}`
 
 You can get the geocoordinate (lat, lon) of your facility.
 
@@ -96,7 +96,7 @@ You can get the geocoordinate (lat, lon) of your facility.
 ### Sample request
 
 ```js
-request.get(`https://api.cupix.works/api/v1/facilities/<your facility key>`, {
+request.get(`https://{team_domain}.cupix.works/api/v1/facilities/<your facility key>`, {
     method:'GET',
     Accept: 'application/json',
     json: true,

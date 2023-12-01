@@ -1,0 +1,68 @@
+
+# Introduction
+
+
+As explained in the Pointcloud model, pointclouds whose kind is group do not have any files, so you should know the id of the pointcloud whose kind is sub.
+ <br>
+Also, you can check the *mesh_uploaded_at* and *ply_uploaded_at* fields of the *[Pointcloud model](https://github.com/cupixrnd/cupix-api/blob/main/Pointcloud.md#parameters)* to check whether the mesh or ply of the cpc exists.
+<br>
+<br>
+
+
+## Download the resource of the pointcloud
+
+`GET /pointclouds/{id}/resources/{kind}/download`
+<a id="opIdpointcloud_download_pointcloud_resource"></a>
+
+> Code samples
+
+```http
+GET https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/resources/{kind}/download?x-cupix-auth={api_key} HTTP/1.1
+Host: {team_domain}.cupix.works
+Accept: application/json
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'X-CUPIX-AUTH': <Your API Token>
+}
+
+# If the kind of the resource you want is mesh,
+r = requests.get('https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/resources/mesh/download', headers = headers)
+
+https.get(r.url, {fileStream})
+
+# If the kind of the resource you want is ply,
+r = requests.get('https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/resources/ply/download', headers = headers)
+
+https.get(r.url, {fileStream})
+
+
+```
+
+<h3 id="pointcloud-resource-download-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|integer(int64)|true|Pointcloud ID|
+|kind|path|string|true|mesh|ply|
+
+> Example responses
+
+The URL of this API response contains a URL where you can download the resources of the pointcloud directly. Please use this to download the mesh/ply resource.
+
+> 400 Response
+
+<h3 id="pointcloud-download-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|302|[Found](https://tools.ietf.org/html/rfc7231#section-6.4.3)|Redirect to pointcloud download link|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request|[ErrorResponse](#schemaerrorresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized request|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Permission denied|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not found|None|
+
+

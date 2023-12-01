@@ -10,7 +10,7 @@ The workflow is as follows.
 
 ## Get pano location information in SV
 
-`GET https://api.cupix.works/api/v1/reviews/{review_key}/records`
+`GET https://{team_domain}.cupix.works/api/v1/reviews/{review_key}/records`
 
 Through this call, you can get the date of Capture (called a record in server terminology), which means a collection of Cupix areas, and geo_coordinate_url, which is a url to download a json file containing the location information of all panos in that record.
 
@@ -25,7 +25,7 @@ Through this call, you can get the date of Capture (called a record in server te
 ### Sample request
 
 ```js
-request.get(`https://api.cupix.works/api/v1/reviews/<your siteview key>/records`, {
+request.get(`https://{team_domain}.cupix.works/api/v1/reviews/<your siteview key>/records`, {
     method:'GET',
     Accept: 'application/json',
     json: true,

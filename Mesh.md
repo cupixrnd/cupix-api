@@ -2,7 +2,7 @@
 
 This endpoint provides meta and transform matrix about the mesh on the CupixWorks and the url to download raw.
 
-`GET https://api.cupix.works/api/v1/meshes | https://api.cupix.works/api/v1/meshes/{id}`
+`GET https://{team_domain}.cupix.works/api/v1/meshes | https://{team_domain}.cupix.works/api/v1/meshes/{id}`
 
 | Attribute    | Type           | Required | Description                                   |
 | :----------- | :------------- | :------- | :-------------------------------------------- |
@@ -16,7 +16,7 @@ This endpoint provides meta and transform matrix about the mesh on the CupixWork
 ### Sample request
 
 ```js
-request.get(`https://api.cupix.works/api/v1/meshes/185`, {
+request.get(`https://{team_domain}.cupix.works/api/v1/meshes/185`, {
     method:'GET',
     Accept: 'application/json',
     json: true, 

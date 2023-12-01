@@ -5,7 +5,7 @@ The only level information required when uploading a capture is a level id to up
 
 ## Look up entire levels in the facility
 
-`GET https://api.cupix.works/api/v1/levels`
+`GET https://{team_domain}.cupix.works/api/v1/levels`
 
 | Attribute    | Type           | Required | Description                                                                                                                      |
 | :----------- | :------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------- |
@@ -17,7 +17,7 @@ The only level information required when uploading a capture is a level id to up
 ### Sample request
 
 ```js
-request.get(`https://api.cupix.works/api/v1/levels`, {
+request.get(`https://{team_domain}.cupix.works/api/v1/levels`, {
     method:'GET',
     Accept: 'application/json',
     json: true,
@@ -85,7 +85,7 @@ Status Code 200 : {
 
 ### Create level
 
-`POST https://api.cupix.works/api/v1/levels`
+`POST https://{team_domain}.cupix.works/api/v1/levels`
 
 | Attribute    | Type            | Required | Description                                                                                                                      |
 | :----------- | :-------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------- |
@@ -97,7 +97,7 @@ Status Code 200 : {
 ### Sample request
 
 ```js
-request.post(`https://api.cupix.works/api/v1/levels`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/levels`, {
         method: 'POST',
         Accept: 'application/json',
         json: true,

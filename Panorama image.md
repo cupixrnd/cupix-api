@@ -3,7 +3,7 @@
 
 ## Get Pano list or Get Pano info
 
-`GET https://api.cupix.works/api/v1/panos OR https://api.cupix.works/api/v1/panos/{id}`
+`GET https://{team_domain}.cupix.works/api/v1/panos OR https://{team_domain}.cupix.works/api/v1/panos/{id}`
 
 A pano's origin property tells you where this pano was created. If origin has video information, it was created from that video, and if origin is null, this pano is a still image, not a video.
 
@@ -22,7 +22,7 @@ Also, you can know if the pano is aligned by putting *cluster* in the fields.
 ### Sample request
 
 ```js
-request.get(`https://api.cupix.works/api/v1/panos`, {
+request.get(`https://{team_domain}.cupix.works/api/v1/panos`, {
     method:'GET',
     Accept: 'application/json',
     json: true,
@@ -66,7 +66,7 @@ request.get(`https://api.cupix.works/api/v1/panos`, {
 
 ### Sample request
 ```js
-request.get(`https://api.cupix.works/api/v1/panos/11718780 `, {
+request.get(`https://{team_domain}.cupix.works/api/v1/panos/11718780 `, {
     method:'GET',
     Accept: 'application/json',
     json: true,
@@ -133,7 +133,7 @@ Status Code 200 : {
 
 ## Update Pano bulk or Update one Pano 
 
-`PUT https://api.cupix.works/api/v1/panos OR https://api.cupix.works/api/v1/panos/{id}`
+`PUT https://{team_domain}.cupix.works/api/v1/panos OR https://{team_domain}.cupix.works/api/v1/panos/{id}`
 
 
 
@@ -148,7 +148,7 @@ Status Code 200 : {
 ### Sample request
 
 ```js
-request.put(`https://api.cupix.works/api/v1/panos`, {
+request.put(`https://{team_domain}.cupix.works/api/v1/panos`, {
     method:'PUT',
     Accept: 'application/json',
     json: true,
@@ -191,9 +191,9 @@ request.put(`https://api.cupix.works/api/v1/panos`, {
 
 ## Publish or unpublish Pano
 
-`PUT https://api.cupix.works/api/v1/panos/{id}/publish`
+`PUT https://{team_domain}.cupix.works/api/v1/panos/{id}/publish`
 
-`DELETE https://api.cupix.works/api/v1/panos/{id}/publish`
+`DELETE https://{team_domain}.cupix.works/api/v1/panos/{id}/publish`
 
 You can publish/unpublish pano with the above call, and you can know whether it has been published/unpublished with the *published_at* value of the response. If *published_at* is null, it is unpublished, and if *published_at* has some value, it is published.
 
@@ -206,7 +206,7 @@ You can publish/unpublish pano with the above call, and you can know whether it 
 
 ### Sample request(publish)
 ```js
-request.put(`https://api.cupix.works/api/v1/panos/<your pano id>/publish`, {
+request.put(`https://{team_domain}.cupix.works/api/v1/panos/<your pano id>/publish`, {
     method: 'PUT',
     Accept: 'application/json',
     json: true,
@@ -235,7 +235,7 @@ Status Code 200 : {
 
 ### Sample request(unpublish)
 ```js
-request.delete(`https://api.cupix.works/api/v1/panos/<your pano id>/publish`, {
+request.delete(`https://{team_domain}.cupix.works/api/v1/panos/<your pano id>/publish`, {
     method: 'DELETE',
     Accept: 'application/json',
     json: true,

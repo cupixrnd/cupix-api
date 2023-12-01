@@ -1,8 +1,8 @@
-# Cupix RESTful API
+# CupixWorks API
 
 ## Introduction
 
-This is a repository about how to use the cupix RESTful API. If you contact us, we can serve our API document file(openapi.json) so that you test our API in other application which is Postman, or Insomnia, etc. The APIs in this document are kept as up to date as possible.
+This is a repository about how to use the CupixWorks {team_domain}. If you contact us, we can serve our API document file(open{team_domain}.json) so that you test our API in other application which is Postman, or Insomnia, etc. The APIs in this document are kept as up to date as possible.
 
 In the near future, we plan to provide a web service where APIs like other applications can be described and tested.
 
@@ -11,8 +11,7 @@ In the near future, we plan to provide a web service where APIs like other appli
 
 
 ### Basic service
-1. [Authenticate](Authenticate.md)
-2. [Invitation](Invitation.md)
+1. [How to get an api key](<How to get an api key.md>)
 
 ### Cupix setting
 1. [Project](Project.md)

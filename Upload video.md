@@ -25,7 +25,7 @@ From now on, we will call each Capture, area of CupixWorks as *record*, *capture
 Our first goal is to 1. create a capture, 2. upload video to that capture, and 3. trigger that capture to be calculated by notifying server that the upload is complete.
 The whole series of steps after this is for this.
 
-`POST https://api.cupix.works/api/v1/records`
+`POST https://{team_domain}.cupix.works/api/v1/records`
 
 | Attribute    | Type            | Required | Description                                                               |
 |:----------|:----------|:----------|:----------|
@@ -36,7 +36,7 @@ The whole series of steps after this is for this.
 
 ### Sample request
 ```js
-request.post(`https://api.cupix.works/api/v1/records`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/records`, {
     method: 'POST',
     Accept: 'application/json',
     json: true,
@@ -75,7 +75,7 @@ Status Code 200 : {
 
 ## Create an empty capture
 
-`POST https://api.cupix.works/api/v1/captures`
+`POST https://{team_domain}.cupix.works/api/v1/captures`
 
 | Attribute    | Type            | Required | Description                                                               |
 |:----------|:----------|:----------|:----------|
@@ -88,7 +88,7 @@ Status Code 200 : {
 
 ### Sample request
 ```js
-request.post(`https://api.cupix.works/api/v1/captures`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/captures`, {
     method: 'POST',
     Accept: 'application/json',
     json: true,
@@ -131,7 +131,7 @@ Status Code 200 : {
 
 ## Create an empty video model with capture_id and get upload_url
 
-`POST https://api.cupix.works/api/v1/videos`
+`POST https://{team_domain}.cupix.works/api/v1/videos`
 
 | Attribute    | Type            | Required | Description                                                               |
 |:----------|:----------|:----------|:----------|
@@ -141,7 +141,7 @@ Status Code 200 : {
 
 ### Sample request
 ```js
-request.post(`https://api.cupix.works/api/v1/videos`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/videos`, {
         method: 'POST',
         Accept: 'application/json',
         json: true,
@@ -221,7 +221,7 @@ await streamUpload('insv', size, filePath, <Your_video_id>, <Your_upload_url>).t
 
 ### Get upload credential
 
-`POST https://api.cupix.works/api/v1/videos/{id}/upload_credentials`
+`POST https://{team_domain}.cupix.works/api/v1/videos/{id}/upload_credentials`
 
 | Attribute | Type            | Required | Description                                                                                                 |
 | :-------- | :-------------- | :------- | :---------------------------------------------------------------------------------------------------------- |
@@ -237,7 +237,7 @@ Let's say we upload the above a pair of files.
 ### Sample request
 
 ```js
-request.post(`https://api.cupix.works/api/v1/videos/32918/upload_credentials`, {
+request.post(`https://{team_domain}.cupix.works/api/v1/videos/32918/upload_credentials`, {
         method: 'POST',
         Accept: 'application/json',
         json: true,
@@ -276,7 +276,7 @@ Then, implement aws-sdk upload with the obtained information and upload it.(See 
 
 ## Check success of upload
 
-`PUT https://api.cupix.works/api/v1/videos/{id}/check_uploading`
+`PUT https://{team_domain}.cupix.works/api/v1/videos/{id}/check_uploading`
 
 | Attribute | Type            | Required | Description                                                                                                           |
 | :-------- | :-------------- | :------- | :-------------------------------------------------------------------------------------------------------------------- |
@@ -288,7 +288,7 @@ The thing to note is that insta360 video is a pair, so you have to check_uploadi
 ### Sample request
 
 ```js
-request.put(`https://api.cupix.works/api/v1/videos/32918/check_uploading`, {
+request.put(`https://{team_domain}.cupix.works/api/v1/videos/32918/check_uploading`, {
     method: 'PUT',
     Accept: 'application/json',
     json: true,
@@ -322,7 +322,7 @@ request.put(`https://api.cupix.works/api/v1/videos/32918/check_uploading`, {
 
 ## Make Area upload done state
 
-`PUT https://api.cupix.works/api/v1/captures/{id}`
+`PUT https://{team_domain}.cupix.works/api/v1/captures/{id}`
 
 | Attribute    | Type            | Required | Description                                                                                                                                                                                                                                                 |
 | :----------- | :-------------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -337,7 +337,7 @@ Now let the server know that your upload is complete and you're done.
 ### Sample request
 
 ```js
-request.put(`https://api.cupix.works/api/v1/captures/199991`, {
+request.put(`https://{team_domain}.cupix.works/api/v1/captures/199991`, {
     method: 'PUT',
     Accept: 'application/json',
     json: true,
