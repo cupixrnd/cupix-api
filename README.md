@@ -13,7 +13,7 @@ In the near future, we plan to provide a web service where APIs like other appli
 ### Basic service
 1. [How to get an api key](<How to get an api key.md>)
 
-### Cupix setting
+### CupixWorks Project
 1. [Project](Project.md)
 2. [Level](Level.md)
 
