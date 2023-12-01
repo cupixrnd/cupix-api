@@ -373,13 +373,6 @@ The URL of this API response contains a URL where you can download the pointclou
 
 > Code samples
 
-```http
-GET https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/meta?{queryString} HTTP/1.1
-Host: {team_domain}.cupix.works
-Accept: application/json
-
-```
-
 ```python
 import requests
 headers = {
