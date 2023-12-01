@@ -28,7 +28,7 @@ request.get(`https://{team_domain}.cupix.works/api/v1/facilities`, {
         fields : 'id, name, key'
     },
     headers: {
-    	'x-cupix-auth': <your_access_token>
+    	'x-cupix-auth': <YOUR_API_KEY>
     }
     }
 )
@@ -104,7 +104,7 @@ request.get(`https://{team_domain}.cupix.works/api/v1/facilities/<your facility 
         fields : 'georeference, bearing'
     },
     headers: {
-    	'x-cupix-auth': <your_access_token>
+    	'x-cupix-auth': <YOUR_API_KEY>
     }
     }
 )

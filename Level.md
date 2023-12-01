@@ -23,10 +23,10 @@ request.get(`https://{team_domain}.cupix.works/api/v1/levels`, {
     json: true,
     qs : {
         fields : 'id,name,state,floorplans_count,default_floorplan',
-        facility_key : <your_facility_key>
+        facility_key : <YOUR_FACILITY_KEY>
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```
@@ -103,7 +103,7 @@ request.post(`https://{team_domain}.cupix.works/api/v1/levels`, {
         json: true,
         qs: {
             fields: 'id,name,state,floorplans_count,default_floorplan',
-            'facility_key': <your_facility_key>,
+            'facility_key': <YOUR_FACILITY_KEY>,
             elevation: 2,
             name: test
         },

@@ -33,7 +33,7 @@ request.get(`https://{team_domain}.cupix.works/api/v1/reviews/<your siteview key
             fields : 'id,captured_at,geo_coordinate_url'
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```

@@ -245,7 +245,7 @@ request.post(`https://{team_domain}.cupix.works/api/v1/videos/32918/upload_crede
             fields: 'aws_access_key_id,aws_secret_access_key,aws_session_token,expires_at,basepath,bucket_name,bucket_region,acl'
         },
         headers: {
-            'x-cupix-auth': <your_access_token>
+            'x-cupix-auth': <YOUR_API_KEY>
         }
     })
 ```
@@ -296,7 +296,7 @@ request.put(`https://{team_domain}.cupix.works/api/v1/videos/32918/check_uploadi
         fields: 'id,name,state'
     },
     headers: {
-        'x-cupix-auth': <your_access_token>
+        'x-cupix-auth': <YOUR_API_KEY>
     }
 })
 ```
@@ -348,7 +348,7 @@ request.put(`https://{team_domain}.cupix.works/api/v1/captures/199991`, {
         upload_state: 'upload_done'
     },
     headers: {
-        'x-cupix-auth': <your_access_token>
+        'x-cupix-auth': <YOUR_API_KEY>
     }
 }
 );

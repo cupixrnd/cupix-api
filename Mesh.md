@@ -24,7 +24,7 @@ request.get(`https://{team_domain}.cupix.works/api/v1/meshes/185`, {
         fields : 'id,state,meta',
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```

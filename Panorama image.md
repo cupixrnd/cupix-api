@@ -31,7 +31,7 @@ request.get(`https://{team_domain}.cupix.works/api/v1/panos`, {
 		capture_id: 226700
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```
@@ -74,7 +74,7 @@ request.get(`https://{team_domain}.cupix.works/api/v1/panos/11718780 `, {
             fields : 'id,cluster',
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```
@@ -168,7 +168,7 @@ request.put(`https://{team_domain}.cupix.works/api/v1/panos`, {
 
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```
@@ -214,7 +214,7 @@ request.put(`https://{team_domain}.cupix.works/api/v1/panos/<your pano id>/publi
             fields : 'id,published_at',
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```
@@ -243,7 +243,7 @@ request.delete(`https://{team_domain}.cupix.works/api/v1/panos/<your pano id>/pu
             fields : 'id,published_at',
     },
     headers: {
-    'x-cupix-auth' : <your_access_token>
+    'x-cupix-auth' : <YOUR_API_KEY>
     }
 })
 ```
