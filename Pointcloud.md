@@ -23,12 +23,6 @@ Once you have determined the ID of the pointcloud you want to download `/pointcl
 
 > Code samples
 
-```http
-GET https://{team_domain}.cupix.works/api/v1/pointclouds?{queryString} HTTP/1.1
-Host: {team_domain}.cupix.works
-Accept: application/json
-```
-
 ```python
 import requests
 headers = {
@@ -177,12 +171,6 @@ print(r.json())
 <a id="opIdpointcloud_get_pointcloud"></a>
 
 > Code samples
-
-```http
-GET https://{team_domain}.cupix.works/api/v1/pointclouds/{id}?{queryString} HTTP/1.1
-Host: {team_domain}.cupix.works
-Accept: application/json
-```
 
 ```python
 import requests
@@ -336,13 +324,6 @@ CupixAuth
 <a id="opIdpointcloud_download_pointcloud"></a>
 
 > Code samples
-
-```http
-GET https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/download?x-cupix-auth={api_key} HTTP/1.1
-Host: {team_domain}.cupix.works
-Accept: application/json
-
-```
 
 ```python
 import requests

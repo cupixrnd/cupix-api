@@ -16,12 +16,6 @@ Also, you can check the *mesh_uploaded_at* and *ply_uploaded_at* fields of the *
 
 > Code samples
 
-```http
-GET https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/resources/{kind}/download?x-cupix-auth={api_key} HTTP/1.1
-Host: {team_domain}.cupix.works
-Accept: application/json
-```
-
 ```python
 import requests
 headers = {
