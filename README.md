@@ -1,4 +1,4 @@
-# CupixWorks API
+# Unofficial CupixWorks API
 
 ## Introduction
 
@@ -7,7 +7,7 @@ This is a repository about how to use the CupixWorks API. If you contact us, we 
 In the near future, we plan to provide a web service where APIs like other applications can be described and tested.
 
 
-## API List
+## Unofficial API List
 
 [How to get your api key](<How to get your api key.md>)
 
