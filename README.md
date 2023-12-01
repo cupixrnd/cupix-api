@@ -9,9 +9,7 @@ In the near future, we plan to provide a web service where APIs like other appli
 
 ## API List
 
-
-### Basic service
-1. [How to get an api key](<How to get an api key.md>)
+[How to get an api key](<How to get an api key.md>)
 
 ### CupixWorks Project
 1. [Project](Project.md)
