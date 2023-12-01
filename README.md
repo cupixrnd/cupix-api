@@ -9,7 +9,7 @@ In the near future, we plan to provide a web service where APIs like other appli
 
 ## API List
 
-[How to get an api key](<How to get an api key.md>)
+[How to get your api key](<How to get your api key.md>)
 
 ### CupixWorks Project
 1. [Project](Project.md)
@@ -28,4 +28,4 @@ In the near future, we plan to provide a web service where APIs like other appli
 1. [Pointcloud](<Pointcloud.md>)
 2. [Mesh](<Mesh.md>)
 3. [Video](<Video.md>)
-4. [PointcloudResource](<PointcloudResource.md>)
+4. [Ply and mesh](<Ply and mesh.md>)
