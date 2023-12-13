@@ -24,14 +24,24 @@ headers = {
 }
 
 # If the kind of the resource you want is mesh,
+# you need to unzip it and extract the mesh ply file, since the downloaded file is a zip file.
 r = requests.get('https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/resources/mesh/download', headers = headers)
-
-https.get(r.url, {fileStream})
+file_name  = f'{<your_file_path>}.zip'
+with open(file_name, 'wb') as f:
+    for chunk in r.iter_content(chunk_size=1024):
+        if chunk:
+            f.write(chunk)
+with zipfile.ZipFile(f'{<your_file_path>}.zip', 'r') as zip_ref:
+    zip_ref.extractall(f'{unzip directory}')
 
 # If the kind of the resource you want is ply,
 r = requests.get('https://{team_domain}.cupix.works/api/v1/pointclouds/{id}/resources/ply/download', headers = headers)
+file_name  = f'{<your_file_path>}.ply'
+with open(file_name, 'wb') as f:
+    for chunk in r.iter_content(chunk_size=1024):
+        if chunk:
+            f.write(chunk)
 
-https.get(r.url, {fileStream})
 
 
 ```

@@ -103,8 +103,11 @@ headers = {
 }
 
 r = requests.get('https://{team_domain}.cupix.works/api/v1/videos/{id}/download', headers = headers)
-
-https.get(r.url, {fileStream})
+file_name  = f'{<your_file_path>}'
+with open(file_name, 'wb') as f:
+    for chunk in r.iter_content(chunk_size=1024):
+        if chunk:
+            f.write(chunk)
 
 ```
 
