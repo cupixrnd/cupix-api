@@ -18,6 +18,8 @@ Also, you can check the *mesh_uploaded_at* and *ply_uploaded_at* fields of the *
 
 ```python
 import requests
+import zipfile
+
 headers = {
   'Accept': 'application/json',
   'X-CUPIX-AUTH': <Your API Token>
