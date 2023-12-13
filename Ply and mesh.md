@@ -9,7 +9,7 @@ Also, you can check the *mesh_uploaded_at* and *ply_uploaded_at* fields of the *
 <br>
 
 
-## Download ply and mesh of the pointcloud
+## Download the ply and mesh of the pointcloud
 
 `GET /pointclouds/{id}/resources/{kind}/download`
 <a id="opIdpointcloud_download_pointcloud_resource"></a>
