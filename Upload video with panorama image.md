@@ -30,7 +30,9 @@ Put video-pano in the material property.
 | level_id          | int             | true     | level id to upload                |
 | record_id         | string          | true     | record id to upload               |
 | name              | string          | true     | capture name                      |
-| expected_quality  | string          | true     | capture name                      |
+| expected_quality  | string          | false     | dollhouse, flexible                     |
+
+If expected_quality is flexible, CupixWorks does not trigger cpc generation even after the capture alignment task is completed.
 
 ### Sample request
 
@@ -39,16 +41,18 @@ request.post(`https://{team_domain}.cupix.works/api/v1/captures`, {
     method: 'POST',
     Accept: 'application/json',
     json: true,
-    qs: {
+    body: {
         fields: 'id, name',
-        creation_platform: "web",
+        creation_platform: 'web,
         material: 'video-pano',
-        level_id: <level id to upload>,
-        record_id: <record id to upload>,
-        name: <capture name>
+        level_id: <Level Id>,
+        record_id: <Record Id>,
+        name: <capture name>,
+        expected_quality : 'flexible'
+
     },
     headers: {
-        'x-cupix-auth': <your access_token>
+        'x-cupix-auth': <API_KEY>
     }
 })
 ```
