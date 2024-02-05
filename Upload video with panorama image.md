@@ -30,6 +30,7 @@ Put video-pano in the material property.
 | level_id          | int             | true     | level id to upload                |
 | record_id         | string          | true     | record id to upload               |
 | name              | string          | true     | capture name                      |
+| expected_quality  | string          | true     | capture name                      |
 
 ### Sample request
 
